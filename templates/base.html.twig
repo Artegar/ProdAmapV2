@@ -6,10 +6,10 @@
 	{% block stylesheets %}{% endblock %}
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
-<body>
-	{% block body %}
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container-fluid">
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+	<div class="container-fluid">
+		
 			<!---<div class="row">
 				<div class="col-lg-12">
 					{% if app.user %}
@@ -82,12 +82,13 @@
 							<a role="button" class="btn btn-primary active btn-md" href="/inscription">
 								Inscription
 							</a>
-						</div>
-					</nav>
-				</div>
+						</div>	
+					</div>		
+				</div>			
 			</div>
-		</div>
-	</div>
+		
+	</div>	
+</nav>
 
 
 	{% endblock %}
@@ -96,5 +97,3 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	{% endblock %}
-</body>
-</html>
