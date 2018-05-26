@@ -1,0 +1,25 @@
+header {
+  padding: 154px 0 100px;
+}
+
+@media (min-width: 992px) {
+  header {
+    padding: 156px 0 100px;
+  }
+}
+
+section {
+  padding: 150px 0;
+}
+
+/* Zones texte */
+header.bg-primary.text-white { background-image: url("/img/sky.jpg") }
+section#food {padding-top: 60px;}
+#food {background-image: url("/img/food.jpg"); height: 500px; }
+div#texte1.row { background-image: url("/img/bois.jpg"); background-color: rgba(0, 0, 0, 0.7 ); border-radius: 7px; }
+div#texte1.row h2 {text-align: center;}
+div.col-lg-8.mx-auto h1, p{opacity: 1;}
+section#champs { padding-top: 60px; }
+#champs { background-image: url('/img/cow.jpg'); height: 500px;}
+div#texte2.row { background-image: url("/img/bois.jpg"); background-color: rgba(0, 0, 0, 0.7 ); border-radius: 7px; }
+div#texte2.row h2 {text-align: center;}

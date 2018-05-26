@@ -1,0 +1,29 @@
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+div.col-lg-4 h1 { margin-bottom: 20px;}
+
+div.card.text-white.bg-secondary.my-4.text-center {
+  background-color: #363740 !important;
+}
+
+ /* Actualités */
+h2.card-title { margin-bottom: 10px; text-align: center; }
+div.ligne-separation  {
+                        height: 5px;
+                        width: 70%;
+                        border-top: #222222 solid 2px;
+                        margin: auto auto 10px;
+                      }
+
+div.image-card1, div.image-card2, div.image-card3 { width: 100%; height: 200px;}
+
+footer{
+  background-color: #363740 !important;
+}
