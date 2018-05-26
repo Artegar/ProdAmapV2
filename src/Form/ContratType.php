@@ -16,10 +16,9 @@ class ContratType extends AbstractType
             ->add('contMontant')
             ->add('contDateDebut')
             ->add('contDateFin')
-            ->add('utilisateurProdId')
-            ->add('utilisateurAdherId')
-            ->add('amapAmapId')
-            ->add('panier')
+            ->add('adher')
+            ->add('amap')
+            ->add('prod')
         ;
     }
 

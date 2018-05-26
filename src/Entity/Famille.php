@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Famille
  *
- * @ORM\Table(name="famille")
+ * @ORM\Table(name="famille", indexes={@ORM\Index(name="famille_utilisateur_FK", columns={"util_id"})})
  * @ORM\Entity
  */
 class Famille
@@ -28,6 +28,16 @@ class Famille
      */
     private $famNom;
 
+    /**
+     * @var \Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="util_id", referencedColumnName="util_id")
+     * })
+     */
+    private $util;
+
     public function getFamId(): ?int
     {
         return $this->famId;
@@ -41,6 +51,18 @@ class Famille
     public function setFamNom(?string $famNom): self
     {
         $this->famNom = $famNom;
+
+        return $this;
+    }
+
+    public function getUtil(): ?Utilisateur
+    {
+        return $this->util;
+    }
+
+    public function setUtil(?Utilisateur $util): self
+    {
+        $this->util = $util;
 
         return $this;
     }

@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Produit
  *
- * @ORM\Table(name="produit", indexes={@ORM\Index(name="FK_produit_prod_id_producteur", columns={"prod_id_producteur"}), @ORM\Index(name="FK_produit_fam_id", columns={"fam_id"})})
+ * @ORM\Table(name="produit", indexes={@ORM\Index(name="produit_famille_FK", columns={"fam_id"}), @ORM\Index(name="produit_utilisateur0_FK", columns={"util_id"})})
  * @ORM\Entity
  */
 class Produit
@@ -15,11 +15,11 @@ class Produit
     /**
      * @var int
      *
-     * @ORM\Column(name="prod_id", type="integer", nullable=false)
+     * @ORM\Column(name="produit_id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $prodId;
+    private $produitId;
 
     /**
      * @var string|null
@@ -39,18 +39,18 @@ class Produit
     private $fam;
 
     /**
-     * @var \Producteur
+     * @var \Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="Producteur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="prod_id_producteur", referencedColumnName="prod_id")
+     *   @ORM\JoinColumn(name="util_id", referencedColumnName="util_id")
      * })
      */
-    private $prodProducteur;
+    private $util;
 
-    public function getProdId(): ?int
+    public function getProduitId(): ?int
     {
-        return $this->prodId;
+        return $this->produitId;
     }
 
     public function getProdNom(): ?string
@@ -77,14 +77,14 @@ class Produit
         return $this;
     }
 
-    public function getProdProducteur(): ?Producteur
+    public function getUtil(): ?Utilisateur
     {
-        return $this->prodProducteur;
+        return $this->util;
     }
 
-    public function setProdProducteur(?Producteur $prodProducteur): self
+    public function setUtil(?Utilisateur $util): self
     {
-        $this->prodProducteur = $prodProducteur;
+        $this->util = $util;
 
         return $this;
     }

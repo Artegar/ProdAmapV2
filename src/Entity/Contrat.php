@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Contrat
  *
- * @ORM\Table(name="contrat")
+ * @ORM\Table(name="contrat", indexes={@ORM\Index(name="contrat_producteur_FK", columns={"prod_id"}), @ORM\Index(name="contrat_amap0_FK", columns={"amap_id"}), @ORM\Index(name="contrat_adherant1_FK", columns={"adher_id"})})
  * @ORM\Entity
  */
 class Contrat
@@ -52,48 +50,34 @@ class Contrat
     private $contDateFin;
 
     /**
-     * @var int|null
+     * @var \Adherant
      *
-     * @ORM\Column(name="utilisateur_prod_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Adherant")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="adher_id", referencedColumnName="adher_id")
+     * })
      */
-    private $utilisateurProdId;
+    private $adher;
 
     /**
-     * @var int|null
+     * @var \Amap
      *
-     * @ORM\Column(name="utilisateur_adher_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Amap")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="amap_id", referencedColumnName="amap_id")
+     * })
      */
-    private $utilisateurAdherId;
+    private $amap;
 
     /**
-     * @var int|null
+     * @var \Producteur
      *
-     * @ORM\Column(name="amap_amap_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Producteur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="prod_id", referencedColumnName="prod_id")
+     * })
      */
-    private $amapAmapId;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Panier", inversedBy="cont")
-     * @ORM\JoinTable(name="concerner",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="cont_id", referencedColumnName="cont_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="panier_id", referencedColumnName="panier_id")
-     *   }
-     * )
-     */
-    private $panier;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->panier = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    private $prod;
 
     public function getContId(): ?int
     {
@@ -148,66 +132,41 @@ class Contrat
         return $this;
     }
 
-    public function getUtilisateurProdId(): ?int
+    public function getAdher(): ?Adherant
     {
-        return $this->utilisateurProdId;
+        return $this->adher;
     }
 
-    public function setUtilisateurProdId(?int $utilisateurProdId): self
+    public function setAdher(?Adherant $adher): self
     {
-        $this->utilisateurProdId = $utilisateurProdId;
+        $this->adher = $adher;
 
         return $this;
     }
 
-    public function getUtilisateurAdherId(): ?int
+    public function getAmap(): ?Amap
     {
-        return $this->utilisateurAdherId;
+        return $this->amap;
     }
 
-    public function setUtilisateurAdherId(?int $utilisateurAdherId): self
+    public function setAmap(?Amap $amap): self
     {
-        $this->utilisateurAdherId = $utilisateurAdherId;
+        $this->amap = $amap;
 
         return $this;
     }
 
-    public function getAmapAmapId(): ?int
+    public function getProd(): ?Producteur
     {
-        return $this->amapAmapId;
+        return $this->prod;
     }
 
-    public function setAmapAmapId(?int $amapAmapId): self
+    public function setProd(?Producteur $prod): self
     {
-        $this->amapAmapId = $amapAmapId;
+        $this->prod = $prod;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Panier[]
-     */
-    public function getPanier(): Collection
-    {
-        return $this->panier;
-    }
-
-    public function addPanier(Panier $panier): self
-    {
-        if (!$this->panier->contains($panier)) {
-            $this->panier[] = $panier;
-        }
-
-        return $this;
-    }
-
-    public function removePanier(Panier $panier): self
-    {
-        if ($this->panier->contains($panier)) {
-            $this->panier->removeElement($panier);
-        }
-
-        return $this;
-    }
 
 }

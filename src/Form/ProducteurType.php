@@ -16,6 +16,7 @@ class ProducteurType extends AbstractType
             ->add('prodSiren')
             ->add('prodDateVerif')
             ->add('prodNomExploit')
+            ->add('produit')
         ;
     }
 

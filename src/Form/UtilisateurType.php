@@ -24,7 +24,7 @@ class UtilisateurType extends AbstractType
             ->add('utilAdresse2')
             ->add('utilCodepostal')
             ->add('utilVille')
-            ->add('prodcuteur')
+            ->add('producteur')
             ->add('adherant')
         ;
     }

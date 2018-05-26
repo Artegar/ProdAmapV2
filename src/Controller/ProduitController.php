@@ -50,7 +50,7 @@ class ProduitController extends Controller
     }
 
     /**
-     * @Route("/{prodId}", name="produit_show", methods="GET")
+     * @Route("/{produitId}", name="produit_show", methods="GET")
      */
     public function show(Produit $produit): Response
     {
@@ -58,7 +58,7 @@ class ProduitController extends Controller
     }
 
     /**
-     * @Route("/{prodId}/edit", name="produit_edit", methods="GET|POST")
+     * @Route("/{produitId}/edit", name="produit_edit", methods="GET|POST")
      */
     public function edit(Request $request, Produit $produit): Response
     {
@@ -68,7 +68,7 @@ class ProduitController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('produit_edit', ['prodId' => $produit->getProdId()]);
+            return $this->redirectToRoute('produit_edit', ['produitId' => $produit->getProduitId()]);
         }
 
         return $this->render('produit/edit.html.twig', [
@@ -78,11 +78,11 @@ class ProduitController extends Controller
     }
 
     /**
-     * @Route("/{prodId}", name="produit_delete", methods="DELETE")
+     * @Route("/{produitId}", name="produit_delete", methods="DELETE")
      */
     public function delete(Request $request, Produit $produit): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$produit->getProdId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$produit->getProduitId(), $request->request->get('_token'))) {
             $em = $this->getDoctrine()->getManager();
             $em->remove($produit);
             $em->flush();

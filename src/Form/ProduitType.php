@@ -14,7 +14,7 @@ class ProduitType extends AbstractType
         $builder
             ->add('prodNom')
             ->add('fam')
-            ->add('prodProducteur')
+            ->add('util')
         ;
     }
 

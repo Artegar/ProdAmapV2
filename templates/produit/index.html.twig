@@ -8,7 +8,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>ProdId</th>
+                <th>ProduitId</th>
                 <th>ProdNom</th>
                 <th>actions</th>
             </tr>
@@ -16,11 +16,11 @@
         <tbody>
         {% for produit in produits %}
             <tr>
-                <td>{{ produit.prodId }}</td>
+                <td>{{ produit.produitId }}</td>
                 <td>{{ produit.prodNom }}</td>
                 <td>
-                    <a href="{{ path('produit_show', {'prodId': produit.prodId}) }}">show</a>
-                    <a href="{{ path('produit_edit', {'prodId': produit.prodId}) }}">edit</a>
+                    <a href="{{ path('produit_show', {'produitId': produit.produitId}) }}">show</a>
+                    <a href="{{ path('produit_edit', {'produitId': produit.produitId}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

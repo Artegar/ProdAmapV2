@@ -2,14 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Panier
  *
- * @ORM\Table(name="panier", indexes={@ORM\Index(name="FK_panier_adher_id", columns={"adher_id"})})
+ * @ORM\Table(name="panier", indexes={@ORM\Index(name="panier_contrat_FK", columns={"cont_id"}), @ORM\Index(name="panier_adherant0_FK", columns={"adher_id"})})
  * @ORM\Entity
  */
 class Panier
@@ -47,7 +45,7 @@ class Panier
     /**
      * @var bool
      *
-     * @ORM\Column(name="panier_actif", type="boolean", nullable=false)
+     * @ORM\Column(name="panier_actif", type="boolean", nullable=false, options={"comment"="Le panier est il toujours prévu ?"})
      */
     private $panierActif;
 
@@ -76,19 +74,14 @@ class Panier
     private $adher;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Contrat
      *
-     * @ORM\ManyToMany(targetEntity="Contrat", mappedBy="panier")
+     * @ORM\ManyToOne(targetEntity="Contrat")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cont_id", referencedColumnName="cont_id")
+     * })
      */
     private $cont;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cont = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     public function getPanierId(): ?int
     {
@@ -179,32 +172,17 @@ class Panier
         return $this;
     }
 
-    /**
-     * @return Collection|Contrat[]
-     */
-    public function getCont(): Collection
+    public function getCont(): ?Contrat
     {
         return $this->cont;
     }
 
-    public function addCont(Contrat $cont): self
+    public function setCont(?Contrat $cont): self
     {
-        if (!$this->cont->contains($cont)) {
-            $this->cont[] = $cont;
-            $cont->addPanier($this);
-        }
+        $this->cont = $cont;
 
         return $this;
     }
 
-    public function removeCont(Contrat $cont): self
-    {
-        if ($this->cont->contains($cont)) {
-            $this->cont->removeElement($cont);
-            $cont->removePanier($this);
-        }
-
-        return $this;
-    }
 
 }

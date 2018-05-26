@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Producteur
  *
- * @ORM\Table(name="producteur")
+ * @ORM\Table(name="producteur", indexes={@ORM\Index(name="producteur_produit_FK", columns={"produit_id"})})
  * @ORM\Entity
  */
 class Producteur
@@ -48,6 +48,16 @@ class Producteur
      * @ORM\Column(name="prod_nom_exploit", type="string", length=100, nullable=false)
      */
     private $prodNomExploit;
+
+    /**
+     * @var \Produit
+     *
+     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="produit_id", referencedColumnName="produit_id")
+     * })
+     */
+    private $produit;
 
     public function getProdId(): ?int
     {
@@ -98,6 +108,18 @@ class Producteur
     public function setProdNomExploit(string $prodNomExploit): self
     {
         $this->prodNomExploit = $prodNomExploit;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

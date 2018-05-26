@@ -13,6 +13,7 @@ class FamilleType extends AbstractType
     {
         $builder
             ->add('famNom')
+            ->add('util')
         ;
     }
 

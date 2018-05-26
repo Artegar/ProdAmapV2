@@ -106,11 +106,11 @@ class Utilisateur
     private $utilVille;
 
     /**
-     * @var int
+     * @var int|null
      *
-     * @ORM\Column(name="prodcuteur", type="integer", nullable=false)
+     * @ORM\Column(name="producteur", type="integer", nullable=true)
      */
-    private $prodcuteur;
+    private $producteur;
 
     /**
      * @var int|null
@@ -268,14 +268,14 @@ class Utilisateur
         return $this;
     }
 
-    public function getProdcuteur(): ?int
+    public function getProducteur(): ?int
     {
-        return $this->prodcuteur;
+        return $this->producteur;
     }
 
-    public function setProdcuteur(int $prodcuteur): self
+    public function setProducteur(?int $producteur): self
     {
-        $this->prodcuteur = $prodcuteur;
+        $this->producteur = $producteur;
 
         return $this;
     }
