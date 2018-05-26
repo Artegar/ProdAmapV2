@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Entity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity
  */
-class Utilisateur
+class Utilisateur implements UserInterface
 {
     /**
      * @var int
@@ -172,30 +173,6 @@ class Utilisateur
         return $this;
     }
 
-    public function getUtilLogin(): ?string
-    {
-        return $this->utilLogin;
-    }
-
-    public function setUtilLogin(string $utilLogin): self
-    {
-        $this->utilLogin = $utilLogin;
-
-        return $this;
-    }
-
-    public function getUtilMdp(): ?string
-    {
-        return $this->utilMdp;
-    }
-
-    public function setUtilMdp(string $utilMdp): self
-    {
-        $this->utilMdp = $utilMdp;
-
-        return $this;
-    }
-
     public function getUtilActif(): ?bool
     {
         return $this->utilActif;
@@ -292,5 +269,82 @@ class Utilisateur
         return $this;
     }
 
+    public function getSalt()
+    {
+        // you *may* need a real salt depending on your encoder
+        // see section on salt below
+        return null;
+    }
 
+    public function getRoles()
+    {
+        if ($this->getUtilSuperadmin())
+        {
+            return array('ROLE_ADMIN');
+        }
+
+        if (!is_null($this->getProducteur()))
+        {
+            return array('ROLE_PRODUCTEUR');
+        }
+
+        if (!is_null($this->getAdherant()))
+        {
+            return array('ROLE_ADHERANT');
+        }
+
+        return array('ROLE_VISITEUR');
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->utilMdp;
+    }
+
+    public function setPassword(string $utilMdp): self
+    {
+        $this->utilMdp = $utilMdp;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->utilLogin;
+    }
+
+    public function setUsername(string $utilLogin): self
+    {
+        $this->utilLogin = $utilLogin;
+
+        return $this;
+    }
+
+    public function getUtilLogin(): ?string
+    {
+        return $this->utilLogin;
+    }
+
+    public function setUtilLogin(string $utilLogin): self
+    {
+        $this->utilLogin = $utilLogin;
+
+        return $this;
+    }
+
+    public function getUtilMdp(): ?string
+    {
+        return $this->utilMdp;
+    }
+
+    public function setUtilMdp(string $utilMdp): self
+    {
+        $this->utilMdp = $utilMdp;
+
+        return $this;
+    }
 }
