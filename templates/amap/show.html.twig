@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Amap{% endblock %}
+
+{% block body %}
+    <h1>Amap</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>AmapId</th>
+                <td>{{ amap.amapId }}</td>
+            </tr>
+            <tr>
+                <th>AmapNom</th>
+                <td>{{ amap.amapNom }}</td>
+            </tr>
+            <tr>
+                <th>AmapAdresse1</th>
+                <td>{{ amap.amapAdresse1 }}</td>
+            </tr>
+            <tr>
+                <th>AmapAdresse2</th>
+                <td>{{ amap.amapAdresse2 }}</td>
+            </tr>
+            <tr>
+                <th>AmapCodepostal</th>
+                <td>{{ amap.amapCodepostal }}</td>
+            </tr>
+            <tr>
+                <th>AmapVille</th>
+                <td>{{ amap.amapVille }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('amap_index') }}">back to list</a>
+
+    <a href="{{ path('amap_edit', {'amapId': amap.amapId}) }}">edit</a>
+
+    {{ include('amap/_delete_form.html.twig') }}
+{% endblock %}

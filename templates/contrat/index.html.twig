@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contrat index{% endblock %}
+
+{% block body %}
+    <h1>Contrat index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ContId</th>
+                <th>ContDateRecept</th>
+                <th>ContMontant</th>
+                <th>ContDateDebut</th>
+                <th>ContDateFin</th>
+                <th>UtilisateurProdId</th>
+                <th>UtilisateurAdherId</th>
+                <th>AmapAmapId</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for contrat in contrats %}
+            <tr>
+                <td>{{ contrat.contId }}</td>
+                <td>{{ contrat.contDateRecept ? contrat.contDateRecept|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contrat.contMontant }}</td>
+                <td>{{ contrat.contDateDebut ? contrat.contDateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contrat.contDateFin ? contrat.contDateFin|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ contrat.utilisateurProdId }}</td>
+                <td>{{ contrat.utilisateurAdherId }}</td>
+                <td>{{ contrat.amapAmapId }}</td>
+                <td>
+                    <a href="{{ path('contrat_show', {'contId': contrat.contId}) }}">show</a>
+                    <a href="{{ path('contrat_edit', {'contId': contrat.contId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('contrat_new') }}">Create new</a>
+{% endblock %}

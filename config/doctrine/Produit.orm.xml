@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Produit" table="produit">
+    <indexes>
+      <index name="FK_produit_prod_id_producteur" columns="prod_id_producteur"/>
+      <index name="FK_produit_fam_id" columns="fam_id"/>
+    </indexes>
+    <id name="prodId" type="integer" column="prod_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="prodNom" type="string" column="prod_nom" length="100" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="fam" target-entity="Famille" fetch="LAZY">
+      <join-columns>
+        <join-column name="fam_id" referenced-column-name="fam_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="prodProducteur" target-entity="Producteur" fetch="LAZY">
+      <join-columns>
+        <join-column name="prod_id_producteur" referenced-column-name="prod_id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

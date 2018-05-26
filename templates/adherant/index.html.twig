@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adherant index{% endblock %}
+
+{% block body %}
+    <h1>Adherant index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>AdherId</th>
+                <th>AdherTresorier</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for adherant in adherants %}
+            <tr>
+                <td>{{ adherant.adherId }}</td>
+                <td>{{ adherant.adherTresorier ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('adherant_show', {'adherId': adherant.adherId}) }}">show</a>
+                    <a href="{{ path('adherant_edit', {'adherId': adherant.adherId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('adherant_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Panier" table="panier">
+    <indexes>
+      <index name="FK_panier_adher_id" columns="adher_id"/>
+    </indexes>
+    <id name="panierId" type="integer" column="panier_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="panierDatePrevue" type="datetime" column="panier_date_prevue" nullable="true"/>
+    <field name="panierRecept" type="boolean" column="panier_recept" nullable="false"/>
+    <field name="panierDateRecept" type="datetime" column="panier_date_recept" nullable="false"/>
+    <field name="panierActif" type="boolean" column="panier_actif" nullable="false"/>
+    <field name="utilPanierProbleme" type="boolean" column="util_panier_probleme" nullable="true"/>
+    <field name="utilPanierRaison" type="string" column="util_panier_raison" length="25" nullable="true">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <many-to-one field="adher" target-entity="Adherant" fetch="LAZY">
+      <join-columns>
+        <join-column name="adher_id" referenced-column-name="adher_id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="cont" target-entity="Contrat" mapped-by="panier" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block body %}
+    <h1>Utilisateur</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>UtilId</th>
+                <td>{{ utilisateur.utilId }}</td>
+            </tr>
+            <tr>
+                <th>UtilNom</th>
+                <td>{{ utilisateur.utilNom }}</td>
+            </tr>
+            <tr>
+                <th>UtilPrenom</th>
+                <td>{{ utilisateur.utilPrenom }}</td>
+            </tr>
+            <tr>
+                <th>UtilTel</th>
+                <td>{{ utilisateur.utilTel }}</td>
+            </tr>
+            <tr>
+                <th>UtilMail</th>
+                <td>{{ utilisateur.utilMail }}</td>
+            </tr>
+            <tr>
+                <th>UtilLogin</th>
+                <td>{{ utilisateur.utilLogin }}</td>
+            </tr>
+            <tr>
+                <th>UtilMdp</th>
+                <td>{{ utilisateur.utilMdp }}</td>
+            </tr>
+            <tr>
+                <th>UtilActif</th>
+                <td>{{ utilisateur.utilActif ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UtilSuperadmin</th>
+                <td>{{ utilisateur.utilSuperadmin ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>UtilAdresse1</th>
+                <td>{{ utilisateur.utilAdresse1 }}</td>
+            </tr>
+            <tr>
+                <th>UtilAdresse2</th>
+                <td>{{ utilisateur.utilAdresse2 }}</td>
+            </tr>
+            <tr>
+                <th>UtilCodepostal</th>
+                <td>{{ utilisateur.utilCodepostal }}</td>
+            </tr>
+            <tr>
+                <th>UtilVille</th>
+                <td>{{ utilisateur.utilVille }}</td>
+            </tr>
+            <tr>
+                <th>Prodcuteur</th>
+                <td>{{ utilisateur.prodcuteur }}</td>
+            </tr>
+            <tr>
+                <th>Adherant</th>
+                <td>{{ utilisateur.adherant }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('utilisateur_index') }}">back to list</a>
+
+    <a href="{{ path('utilisateur_edit', {'utilId': utilisateur.utilId}) }}">edit</a>
+
+    {{ include('utilisateur/_delete_form.html.twig') }}
+{% endblock %}

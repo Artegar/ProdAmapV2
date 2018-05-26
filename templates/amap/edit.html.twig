@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Amap{% endblock %}
+
+{% block body %}
+    <h1>Edit Amap</h1>
+
+    {{ include('amap/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('amap_index') }}">back to list</a>
+
+    {{ include('amap/_delete_form.html.twig') }}
+{% endblock %}

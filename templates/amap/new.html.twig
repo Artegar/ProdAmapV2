@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Amap{% endblock %}
+
+{% block body %}
+    <h1>Create new Amap</h1>
+
+    {{ include('amap/_form.html.twig') }}
+
+    <a href="{{ path('amap_index') }}">back to list</a>
+{% endblock %}

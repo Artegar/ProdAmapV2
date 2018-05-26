@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Famille index{% endblock %}
+
+{% block body %}
+    <h1>Famille index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>FamId</th>
+                <th>FamNom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for famille in familles %}
+            <tr>
+                <td>{{ famille.famId }}</td>
+                <td>{{ famille.famNom }}</td>
+                <td>
+                    <a href="{{ path('famille_show', {'famId': famille.famId}) }}">show</a>
+                    <a href="{{ path('famille_edit', {'famId': famille.famId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('famille_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="App\Entity\Contrat" table="contrat">
+    <id name="contId" type="integer" column="cont_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="contDateRecept" type="datetime" column="cont_date_recept" nullable="true"/>
+    <field name="contMontant" type="float" column="cont_montant" precision="10" scale="0" nullable="false"/>
+    <field name="contDateDebut" type="datetime" column="cont_date_debut" nullable="true"/>
+    <field name="contDateFin" type="datetime" column="cont_date_fin" nullable="true"/>
+    <field name="utilisateurProdId" type="integer" column="utilisateur_prod_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="utilisateurAdherId" type="integer" column="utilisateur_adher_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="amapAmapId" type="integer" column="amap_amap_id" nullable="true">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-many field="panier" target-entity="Panier" inversed-by="cont" fetch="LAZY">
+      <join-table name="concerner">
+        <join-columns>
+          <join-column name="cont_id" referenced-column-name="cont_id"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="panier_id" referenced-column-name="panier_id"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

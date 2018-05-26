@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Producteur index{% endblock %}
+
+{% block body %}
+    <h1>Producteur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ProdId</th>
+                <th>ProdVerif</th>
+                <th>ProdSiren</th>
+                <th>ProdDateVerif</th>
+                <th>ProdNomExploit</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for producteur in producteurs %}
+            <tr>
+                <td>{{ producteur.prodId }}</td>
+                <td>{{ producteur.prodVerif ? 'Yes' : 'No' }}</td>
+                <td>{{ producteur.prodSiren }}</td>
+                <td>{{ producteur.prodDateVerif ? producteur.prodDateVerif|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ producteur.prodNomExploit }}</td>
+                <td>
+                    <a href="{{ path('producteur_show', {'prodId': producteur.prodId}) }}">show</a>
+                    <a href="{{ path('producteur_edit', {'prodId': producteur.prodId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('producteur_new') }}">Create new</a>
+{% endblock %}

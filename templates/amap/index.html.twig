@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Amap index{% endblock %}
+
+{% block body %}
+    <h1>Amap index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>AmapId</th>
+                <th>AmapNom</th>
+                <th>AmapAdresse1</th>
+                <th>AmapAdresse2</th>
+                <th>AmapCodepostal</th>
+                <th>AmapVille</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for amap in amaps %}
+            <tr>
+                <td>{{ amap.amapId }}</td>
+                <td>{{ amap.amapNom }}</td>
+                <td>{{ amap.amapAdresse1 }}</td>
+                <td>{{ amap.amapAdresse2 }}</td>
+                <td>{{ amap.amapCodepostal }}</td>
+                <td>{{ amap.amapVille }}</td>
+                <td>
+                    <a href="{{ path('amap_show', {'amapId': amap.amapId}) }}">show</a>
+                    <a href="{{ path('amap_edit', {'amapId': amap.amapId}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('amap_new') }}">Create new</a>
+{% endblock %}
