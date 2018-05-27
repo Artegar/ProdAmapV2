@@ -1,46 +1,50 @@
-{% extends 'base.html.twig' %}
+{% include 'base.html.twig' %}
 
-{% block title %}Contrat index{% endblock %}
+{% block title %}Contrat{% endblock %}
 
 {% block body %}
-    <h1>Contrat index</h1>
+<h1 style="margin-top: 50px;">Contrat</h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ContId</th>
+                        <th>ContDateRecept</th>
+                        <th>ContMontant</th>
+                        <th>ContDateDebut</th>
+                        <th>ContDateFin</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contrat in contrats %}
+                    <tr class="table-active">
+                        <td>{{ contrat.contId }}</td>
+                        <td>{{ contrat.contDateRecept ? contrat.contDateRecept|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ contrat.contMontant }}</td>
+                        <td>{{ contrat.contDateDebut ? contrat.contDateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ contrat.contDateFin ? contrat.contDateFin|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <a href="{{ path('contrat_show', {'contId': contrat.contId}) }}">show</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>ContId</th>
-                <th>ContDateRecept</th>
-                <th>ContMontant</th>
-                <th>ContDateDebut</th>
-                <th>ContDateFin</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for contrat in contrats %}
-            <tr>
-                <td>{{ contrat.contId }}</td>
-                <td>{{ contrat.contDateRecept ? contrat.contDateRecept|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ contrat.contMontant }}</td>
-                <td>{{ contrat.contDateDebut ? contrat.contDateDebut|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ contrat.contDateFin ? contrat.contDateFin|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('contrat_show', {'contId': contrat.contId}) }}">show</a>
-
-                    {% if app.user %}
-                        {% if is_granted('ROLE_ADMIN') %}
+                            {% if app.user %}
+                            {% if is_granted('ROLE_ADMIN') %}
                             <a href="{{ path('contrat_edit', {'contId': contrat.contId}) }}">edit</a>
-                        {% endif %}
-                    {% endif %}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('contrat_new') }}">Create new</a>
+                            {% endif %}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6">no records found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<a href="{{ path('contrat_new') }}">Create new</a>
 {% endblock %}

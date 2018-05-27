@@ -1,55 +1,60 @@
-{% extends 'base.html.twig' %}
+{% include 'base.html.twig' %}
 
-{% block title %}Panier index{% endblock %}
+{% block title %}Panier{% endblock %}
 
 {% block body %}
-    <h1>Panier index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>PanierId</th>
-                <th>PanierDatePrevue</th>
-                <th>PanierRecept</th>
-                <th>PanierDateRecept</th>
-                <th>PanierActif</th>
-                <th>UtilPanierProbleme</th>
-                <th>UtilPanierRaison</th>
-                {% if app.user %}
-                    {% if is_granted('ROLE_PRODUCTEUR') %}
+<h1>Panier </h1>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Panier Numéro</th>
+                        <th>Date de livraison prevue</th>
+                        <th>Panier Receptionnée</th>
+                        <th>Date de Reception prévue</th>
+                        <th>Panier Actif</th>
+                        <th>Panier Probleme </th>
+                        <th>Raison du problème</th>
+                        {% if app.user %}
+                        {% if is_granted('ROLE_PRODUCTEUR') %}
                         <th>actions</th>
-                    {% endif %}
-                {% endif %}
-            </tr>
-        </thead>
-        <tbody>
-        {% for panier in paniers %}
-            <tr>
-                <td>{{ panier.panierId }}</td>
-                <td>{{ panier.panierDatePrevue ? panier.panierDatePrevue|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ panier.panierRecept ? 'Yes' : 'No' }}</td>
-                <td>{{ panier.panierDateRecept ? panier.panierDateRecept|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ panier.panierActif ? 'Yes' : 'No' }}</td>
-                <td>{{ panier.utilPanierProbleme ? 'Yes' : 'No' }}</td>
-                <td>{{ panier.utilPanierRaison }}</td>
+                        {% endif %}
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for panier in paniers %}
+                    <tr class="table-active">
+                        <td>{{ panier.panierId }}</td>
+                        <td>{{ panier.panierDatePrevue ? panier.panierDatePrevue|date('d-m-Y') : '' }}</td>
+                        <td>{{ panier.panierRecept ? 'Yes' : 'No' }}</td>
+                        <td>{{ panier.panierDateRecept ? panier.panierDateRecept|date('d-m-Y') : '' }}</td>
+                        <td>{{ panier.panierActif ? 'Yes' : 'No' }}</td>
+                        <td>{{ panier.utilPanierProbleme ? 'Yes' : 'No' }}</td>
+                        <td>{{ panier.utilPanierRaison }}</td>
 
 
-                {% if app.user %}
-                    {% if is_granted('ROLE_PRODUCTEUR') %}
+                        {% if app.user %}
+                        {% if is_granted('ROLE_PRODUCTEUR') %}
                         <td>
                             <a href="{{ path('panier_show', {'panierId': panier.panierId}) }}">show</a>
-                            <a href="{{ path('panier_edit', {'panierId': panier.panierId}) }}">edit</a>
+                            <!--  <a href="{{ path('panier_edit', {'panierId': panier.panierId}) }}">edit</a>!-->
                         </td>
-                    {% endif %}
-                {% endif %}
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                        {% endif %}
+                        {% endif %}
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="8">no records found</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-    <a href="{{ path('panier_new') }}">Create new</a>
+<!--<a href="{{ path('panier_new') }}">Create new</a>!--->
 {% endblock %}
