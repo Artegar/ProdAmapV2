@@ -24,10 +24,21 @@ class PanierController extends Controller
         //recupere l'user
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        //recupere les contrats
-        $contrats = $this->getDoctrine()
-            ->getRepository(Contrat::class)
-            ->findBy(array('prod' => $user->getProducteur()));
+        //Selon adherant ou producteur
+        if ($user->getProducteur() != null)
+        {
+            //recupere les contrats
+            $contrats = $this->getDoctrine()
+                ->getRepository(Contrat::class)
+                ->findBy(array('prod' => $user->getProducteur()));
+        }
+        else
+        {
+            //recupere les contrats
+            $contrats = $this->getDoctrine()
+                ->getRepository(Contrat::class)
+                ->findBy(array('prod' => $user->getAdherant()));
+        }
 
         $paniers = array();
 

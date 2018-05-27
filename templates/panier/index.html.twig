@@ -15,7 +15,11 @@
                 <th>PanierActif</th>
                 <th>UtilPanierProbleme</th>
                 <th>UtilPanierRaison</th>
-                <th>actions</th>
+                {% if app.user %}
+                    {% if is_granted('ROLE_PRODUCTEUR') %}
+                        <th>actions</th>
+                    {% endif %}
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -28,10 +32,16 @@
                 <td>{{ panier.panierActif ? 'Yes' : 'No' }}</td>
                 <td>{{ panier.utilPanierProbleme ? 'Yes' : 'No' }}</td>
                 <td>{{ panier.utilPanierRaison }}</td>
-                <td>
-                    <a href="{{ path('panier_show', {'panierId': panier.panierId}) }}">show</a>
-                    <a href="{{ path('panier_edit', {'panierId': panier.panierId}) }}">edit</a>
-                </td>
+
+
+                {% if app.user %}
+                    {% if is_granted('ROLE_PRODUCTEUR') %}
+                        <td>
+                            <a href="{{ path('panier_show', {'panierId': panier.panierId}) }}">show</a>
+                            <a href="{{ path('panier_edit', {'panierId': panier.panierId}) }}">edit</a>
+                        </td>
+                    {% endif %}
+                {% endif %}
             </tr>
         {% else %}
             <tr>

@@ -48,14 +48,17 @@
 										<a class="nav-link" href="/contrat/voirSesContrat">Mes contrats</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="/contrat/voirSesContrat">Mon compte</a>
+										<a class="nav-link" href="/panier/">Mes paniers</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="/utilisateur/{{ app.user.getUtilId }}/edit">Mon compte</a>
 									</li>
 									{% elseif is_granted('ROLE_PRODUCTEUR') %}
 									<li class="nav-item">
 										<a class="nav-link" href="/produit/">Mon produit</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="/panier">Mes livraisons</a>
+										<a class="nav-link" href="/panier/">Mes livraisons</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="/contrat/">Mes contrats</a>
