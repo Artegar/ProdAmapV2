@@ -31,7 +31,7 @@ class Panier
     /**
      * @var bool
      *
-     * @ORM\Column(name="panier_recept", type="boolean", nullable=false)
+     * @ORM\Column(name="panier_recept", type="boolean", nullable=true)
      */
     private $panierRecept;
 

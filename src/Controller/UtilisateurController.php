@@ -63,8 +63,15 @@ class UtilisateurController extends Controller
     public function edit(Request $request, Utilisateur $utilisateur): Response
     {
 
-        $utilisateur->setPassword(); 
+        
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
+
+        $form->remove('adherant');
+        $form->remove('producteur');
+        $form->remove('adherant');
+        $form->remove('utilSuperadmin');
+        $form->remove('utilActif');
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

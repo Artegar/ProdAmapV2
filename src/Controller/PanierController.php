@@ -51,7 +51,7 @@ class PanierController extends Controller
 
             $desPaniers = $this->getDoctrine()
                 ->getManager()
-                ->createQuery('SELECT p FROM App\Entity\Panier p WHERE p.panierDatePrevue < CURRENT_DATE()
+                ->createQuery('SELECT p FROM App\Entity\Panier p WHERE p.panierDatePrevue > CURRENT_DATE()
                     AND p.panierRecept = FALSE')
                 ->getResult();
 
