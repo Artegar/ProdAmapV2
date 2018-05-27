@@ -33,6 +33,8 @@ class UtilisateurController extends Controller
     {
         $utilisateur = new Utilisateur();
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
+        $form->remove('utilActif');
+        $form->remove('utilSuperadmin');
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
