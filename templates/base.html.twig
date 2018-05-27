@@ -35,13 +35,13 @@
 									{% if app.user %}
 									{% if is_granted('ROLE_ADMIN') %}
 									<li class="nav-item">
-										<a class="nav-link" href="/produit/voirProduits">Voir les produits</a>
+										<a class="nav-link" href="/produit/">Voir les produits</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="/contrat/voirTousContrat">Contrats en cours</a>
+										<a class="nav-link" href="/famille/">Voir les familles de produits</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="/producteurs/voirNouveauxProducteur">Nouveaux producteur</a>
+										<a class="nav-link" href="/contrat/">Contrats en cours</a>
 									</li>
 									{% elseif is_granted('ROLE_ADHERANT') %}
 									<li class="nav-item">
