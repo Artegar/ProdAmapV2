@@ -121,5 +121,8 @@ class Amap
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return (string)$this->getAmapNom();
+    }
 }

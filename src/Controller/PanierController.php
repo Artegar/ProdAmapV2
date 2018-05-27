@@ -101,6 +101,11 @@ class PanierController extends Controller
     public function edit(Request $request, Panier $panier): Response
     {
         $form = $this->createForm(PanierType::class, $panier);
+        $form->remove('panierDatePrevue');
+        $form->remove('panierActif');
+        $form->remove('adher');
+        $form->remove('cont');
+        
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
