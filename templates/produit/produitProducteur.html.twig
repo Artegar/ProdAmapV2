@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produit{% endblock %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ProduitId</th>
+            <th>ProdNom</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ produit.produitId }}</td>
+            <td>{{ produit.prodNom }}</td>
+            <td>
+                <a href="{{ path('produit_show', {'produitId': produit.produitId}) }}">show</a>
+                <a href="{{ path('produit_edit', {'produitId': produit.produitId}) }}">edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

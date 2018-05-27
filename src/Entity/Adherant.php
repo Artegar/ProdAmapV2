@@ -45,5 +45,8 @@ class Adherant
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return (string)$this->adherId;
+    }
 }

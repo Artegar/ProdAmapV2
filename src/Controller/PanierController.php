@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Panier;
+use App\Entity\Contrat;
+
 use App\Form\PanierType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,9 +21,34 @@ class PanierController extends Controller
      */
     public function index(): Response
     {
-        $paniers = $this->getDoctrine()
-            ->getRepository(Panier::class)
-            ->findAll();
+        //recupere l'user
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        //recupere les contrats
+        $contrats = $this->getDoctrine()
+            ->getRepository(Contrat::class)
+            ->findBy(array('prod' => $user->getProducteur()));
+
+        $paniers = array();
+
+        foreach ($contrats as $contrat)
+        {
+            //pour chaque contrat, recupere les panier pas encore livrer
+            $desPaniers = $this->getDoctrine()
+                ->getRepository(Panier::class)
+                ->findBy(array('cont' => $contrat->getContId()));
+
+            $desPaniers = $this->getDoctrine()
+                ->getManager()
+                ->createQuery('SELECT p FROM App\Entity\Panier p WHERE p.panierDatePrevue < CURRENT_DATE()
+                    AND p.panierRecept = FALSE')
+                ->getResult();
+
+            foreach ($desPaniers as $panier)
+            {
+                array_push($paniers, $panier);
+            }
+        }
 
         return $this->render('panier/index.html.twig', ['paniers' => $paniers]);
     }

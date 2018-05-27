@@ -52,13 +52,16 @@
 									</li>
 									{% elseif is_granted('ROLE_PRODUCTEUR') %}
 									<li class="nav-item">
-										<a class="nav-link" href="/produit">Mes produits</a>
+										<a class="nav-link" href="/produit/">Mon produit</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="/contrat/voirSesContrat">Mes contrats</a>
+										<a class="nav-link" href="/panier">Mes livraisons</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="/contrat/voirSesContrat">Mon compte</a>
+										<a class="nav-link" href="/contrat/">Mes contrats</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="/utilisateur/{{ app.user.getUtilId }}/edit">Mon compte</a>
 									</li>
 									{% endif %}
 
@@ -77,7 +80,8 @@
 								</ul>
 							</div>
 						</div>	
-
+						{% if app.user %}
+						{% else %}
 						<div class="col-lg-6" style="text-align: right;"> 
 							<a role="btn" class="btn btn-primary  btn-md" href="/security/formConnection">
 								Connexion
@@ -85,7 +89,8 @@
 							<a role="btn" class="btn btn-primary  btn-md" href="/inscription">
 								Inscription
 							</a>
-						</div>	
+						</div>
+						{% endif %}	
 					</div>		
 				</div>			
 			</div>

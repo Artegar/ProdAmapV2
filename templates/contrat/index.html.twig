@@ -26,7 +26,12 @@
                 <td>{{ contrat.contDateFin ? contrat.contDateFin|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('contrat_show', {'contId': contrat.contId}) }}">show</a>
-                    <a href="{{ path('contrat_edit', {'contId': contrat.contId}) }}">edit</a>
+
+                    {% if app.user %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('contrat_edit', {'contId': contrat.contId}) }}">edit</a>
+                        {% endif %}
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

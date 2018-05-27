@@ -33,10 +33,13 @@ class ProduitController extends Controller
     {
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
+        $form->remove('util'); 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+                //app.user
+            $produit->setUtil();
             $em->persist($produit);
             $em->flush();
 
@@ -55,6 +58,21 @@ class ProduitController extends Controller
     public function show(Produit $produit): Response
     {
         return $this->render('produit/show.html.twig', ['produit' => $produit]);
+    }
+
+    /**
+     * @Route("/produitProducteur", name="produit_producteur", methods="GET")
+     */
+    public function showProduitProducteur(): Response
+    {
+        /*
+        $id_user = $this->get('security.token_storage')->getToken()->getUser()->getUtilId();
+        $repository = $this->getDoctrine()->getRepository(Produit::class);
+
+        $produits = $repository->findOneBy(array("util" => $id_user));
+
+        return $this->render('produit/produitProducteur.html.twig', [$produit]);
+        */
     }
 
     /**

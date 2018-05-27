@@ -19,9 +19,11 @@ class ContratController extends Controller
      */
     public function index(): Response
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $contrats = $this->getDoctrine()
             ->getRepository(Contrat::class)
-            ->findAll();
+            ->findBy(array('adher' => $user->getProducteur()));
 
         return $this->render('contrat/index.html.twig', ['contrats' => $contrats]);
     }

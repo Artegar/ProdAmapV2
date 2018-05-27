@@ -62,6 +62,8 @@ class UtilisateurController extends Controller
      */
     public function edit(Request $request, Utilisateur $utilisateur): Response
     {
+
+        $utilisateur->setPassword(); 
         $form = $this->createForm(UtilisateurType::class, $utilisateur);
         $form->handleRequest($request);
 
