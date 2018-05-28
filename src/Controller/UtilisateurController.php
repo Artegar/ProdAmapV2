@@ -39,6 +39,8 @@ class UtilisateurController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $utilisateur->setUtilActif(true);
+            $utilisateur->setUtilSuperadmin(false);
             $em->persist($utilisateur);
             $em->flush();
 

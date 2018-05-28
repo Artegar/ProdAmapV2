@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Produit;
+use App\Entity\Producteur;
 use App\Form\ProduitType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,9 +20,27 @@ class ProduitController extends Controller
      */
     public function index(): Response
     {
-        $produits = $this->getDoctrine()
-            ->getRepository(Produit::class)
-            ->findAll();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        if ($user->getProducteur() != null)
+        {
+            $unProducteur = $this->getDoctrine()
+                ->getRepository(Producteur::class)
+                ->findOneBy(array('prodId' => $user->getProducteur()));
+
+            var_dump(($unProducteur));
+            $unProduit = $unProducteur->getProduit();
+
+            $produits = $this->getDoctrine()
+                ->getRepository(Produit::class)
+                ->findOneBy(array('produitId' => $unProduit->getProduitId()));
+        }
+        else
+        {
+            $produits = $this->getDoctrine()
+                ->getRepository(Produit::class)
+                ->findAll();
+        }
 
         return $this->render('produit/index.html.twig', ['produits' => $produits]);
     }

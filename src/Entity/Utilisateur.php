@@ -348,5 +348,8 @@ class Utilisateur implements UserInterface
         return $this;
     }
 
-    
+    public function __toString()
+    {
+        return (string)($this->getUtilNom().' '.$this->getUtilPrenom());
+    }
 }
