@@ -84,13 +84,15 @@
 							</div>
 						</div>	
 						{% if app.user %}
+						{% if is_granted('ROLE_ADMIN') %}
+						<a role="btn" class="btn btn-primary  btn-md" href="/utilisateur/new">
+								Creation de compte
+							</a>
+							{% endif %}	
 						{% else %}
 						<div class="col-lg-6" style="text-align: right;"> 
 							<a role="btn" class="btn btn-primary  btn-md" href="/security/formConnection">
 								Connexion
-							</a>
-							<a role="btn" class="btn btn-primary  btn-md" href="/utilisateur/new">
-								Inscription
 							</a>
 						</div>
 						{% endif %}	
