@@ -46,5 +46,9 @@
         </div>
     </div>
 </div>
-<a href="{{ path('contrat_new') }}">Create new</a>
+{% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('contrat_new') }}">Create new</a>
+    {% endif %}
+{% endif %}
 {% endblock %}

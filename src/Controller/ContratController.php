@@ -21,9 +21,25 @@ class ContratController extends Controller
     {
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-        $contrats = $this->getDoctrine()
+        if ($user->getProducteur() != null)
+        {
+            $contrats = $this->getDoctrine()
             ->getRepository(Contrat::class)
-            ->findBy(array('adher' => $user->getProducteur()));
+            ->findBy(array('prod' => $user->getProducteur()));
+        }
+        else
+        {
+            $contrats = $this->getDoctrine()
+            ->getRepository(Contrat::class)
+            ->findAll();
+        }
+
+        if ($user->getAdherant() != null)
+        {
+            $contrats = $this->getDoctrine()
+            ->getRepository(Contrat::class)
+            ->findBy(array('adher' => $user->getAdherant()));
+        }
 
         return $this->render('contrat/index.html.twig', ['contrats' => $contrats]);
     }
