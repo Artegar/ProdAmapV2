@@ -28,12 +28,11 @@ class ProduitController extends Controller
                 ->getRepository(Producteur::class)
                 ->findOneBy(array('prodId' => $user->getProducteur()));
 
-            var_dump(($unProducteur));
             $unProduit = $unProducteur->getProduit();
 
             $produits = $this->getDoctrine()
                 ->getRepository(Produit::class)
-                ->findOneBy(array('produitId' => $unProduit->getProduitId()));
+                ->findBy(array('produitId' => $unProduit->getProduitId()));
         }
         else
         {
