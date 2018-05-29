@@ -1,26 +1,25 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Adherant{% endblock %}
+{% include 'base.html.twig' %}
 
 {% block body %}
-    <h1>Adherant</h1>
+    <h1>Adhérant</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>AdherId</th>
+                <th>Id</th>
                 <td>{{ adherant.adherId }}</td>
             </tr>
             <tr>
-                <th>AdherTresorier</th>
-                <td>{{ adherant.adherTresorier ? 'Yes' : 'No' }}</td>
+                <th>Trésorier</th>
+                <td>{{ adherant.adherTresorier ? 'Oui' : 'Non' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('adherant_index') }}">back to list</a>
+    <a href="{{ path('adherant_index') }}">Retourner à la liste</a>
 
-    <a href="{{ path('adherant_edit', {'adherId': adherant.adherId}) }}">edit</a>
+    </br>
+    <a href="{{ path('adherant_edit', {'adherId': adherant.adherId}) }}">modifier</a>
 
     {{ include('adherant/_delete_form.html.twig') }}
 {% endblock %}

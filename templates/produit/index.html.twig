@@ -1,16 +1,13 @@
 {% include 'base.html.twig' %}
 
-{% block title %}Produit{% endblock %}
-
 {% block body %}
-<h1>Produit</h1>
+<h1>Produit(s)</h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Produit</th>
                         <th>Nom</th>
                         <th>Actions</th>
                     </tr>
@@ -18,16 +15,15 @@
                 <tbody>
                     {% for produit in produits %}
                     <tr class="table-default">
-                        <td>{{ produit.produitId }}</td>
                         <td>{{ produit.prodNom }}</td>
                         <td>
-                            <a href="{{ path('produit_show', {'produitId': produit.produitId}) }}">show</a>
-                            <a href="{{ path('produit_edit', {'produitId': produit.produitId}) }}">edit</a>
+                            <a href="{{ path('produit_show', {'produitId': produit.produitId}) }}">voir</a> | 
+                            <a href="{{ path('produit_edit', {'produitId': produit.produitId}) }}">modifier</a>
                         </td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="3">no records found</td>
+                        <td colspan="3">pas de résultats</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -35,5 +31,5 @@
         </div>
     </div>
 </div>
-<a href="{{ path('produit_new') }}">Create new</a>
+<a href="{{ path('produit_new') }}">Nouveau produit</a>
 {% endblock %}

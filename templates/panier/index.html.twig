@@ -2,51 +2,50 @@
 
 
 {% block body %}
-<h1>Panier </h1>
+<h1>Panier(s)</h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Panier Numéro</th>
                         <th>Date de livraison prevue</th>
-                        <th>Panier Receptionnée</th>
+                        <th>Panier Receptionné</th>
                         <th>Date de Reception prévue</th>
                         <th>Panier Actif</th>
-                        <th>Panier Probleme </th>
-                        <th>Raison du problème</th>
+                        <th>Problème de livraison </th>
+                        <th>Cause(s) du problème</th>
                         {% if app.user %}
-                        {% if is_granted('ROLE_PRODUCTEUR') %}
-                        <th>actions</th>
-                        {% endif %}
+                            {% if is_granted('ROLE_PRODUCTEUR') %}
+                            <th>actions</th>
+                            {% endif %}
                         {% endif %}
                     </tr>
                 </thead>
                 <tbody>
                     {% for panier in paniers %}
                     <tr class="table-active">
-                        <td>{{ panier.panierId }}</td>
-                        <td>{{ panier.panierDatePrevue ? panier.panierDatePrevue|date('d-m-Y') : '' }}</td>
-                        <td>{{ panier.panierRecept ? 'Yes' : 'No' }}</td>
-                        <td>{{ panier.panierDateRecept ? panier.panierDateRecept|date('d-m-Y') : '' }}</td>
-                        <td>{{ panier.panierActif ? 'Yes' : 'No' }}</td>
-                        <td>{{ panier.utilPanierProbleme ? 'Yes' : 'No' }}</td>
+                        <td>{{ panier.panierDatePrevue ? panier.panierDatePrevue|date('H:i:s m-d-Y') : '' }}</td>
+                        <td>{{ panier.panierRecept ? 'Oui' : 'Non' }}</td>
+                        <td>{{ panier.panierDateRecept ? panier.panierDateRecept|date('H:i:s m-d-Y') : '' }}</td>
+                        <td>{{ panier.panierActif ? 'Oui' : 'Non' }}</td>
+                        <td>{{ panier.utilPanierProbleme ? 'Oui' : 'Non' }}</td>
                         <td>{{ panier.utilPanierRaison }}</td>
 
 
                         {% if app.user %}
                         {% if is_granted('ROLE_PRODUCTEUR') %}
                         <td>
-                            <a href="{{ path('panier_show', {'panierId': panier.panierId}) }}">show</a>
-                            <a href="{{ path('panier_edit', {'panierId': panier.panierId}) }}">edit</a>
+                            <a href="{{ path('panier_show', {'panierId': panier.panierId}) }}">voir</a>
+                            |
+                            <a href="{{ path('panier_edit', {'panierId': panier.panierId}) }}">modifier</a>
                         </td>
                         {% endif %}
                         {% endif %}
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="8">no records found</td>
+                        <td colspan="8">pas de résultats </td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -55,5 +54,4 @@
     </div>
 </div>
 
-<!--<a href="{{ path('panier_new') }}">Create new</a>!--->
 {% endblock %}

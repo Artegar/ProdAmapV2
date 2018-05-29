@@ -1,17 +1,12 @@
 {% include 'base.html.twig' %}
 
-{% block title %}Producteur index{% endblock %}
-
 {% block body %}
-    <h1>Producteur index</h1>
+    <h1>Producteur(s)</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>ProdId</th>
-                <th>ProdVerif</th>
                 <th>ProdSiren</th>
-                <th>ProdDateVerif</th>
                 <th>ProdNomExploit</th>
                 {% if app.user %}
                     <th>actions</th>
@@ -21,28 +16,26 @@
         <tbody>
         {% for producteur in producteurs %}
             <tr>
-                <td>{{ producteur.prodId }}</td>
-                <td>{{ producteur.prodVerif ? 'Yes' : 'No' }}</td>
                 <td>{{ producteur.prodSiren }}</td>
-                <td>{{ producteur.prodDateVerif ? producteur.prodDateVerif|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ producteur.prodNomExploit }}</td>
 
                 {% if app.user %}
                     <td>
-                        <a href="{{ path('producteur_show', {'prodId': producteur.prodId}) }}">show</a>
-                        <a href="{{ path('producteur_edit', {'prodId': producteur.prodId}) }}">edit</a>
+                        <a href="{{ path('producteur_show', {'prodId': producteur.prodId}) }}">voir</a>
+                        |
+                        <a href="{{ path('producteur_edit', {'prodId': producteur.prodId}) }}">modifier</a>
                     </td>
                 {% endif %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">pas de résultats</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
     {% if app.user %}
-        <a href="{{ path('producteur_new') }}">Create new</a>
+        <a href="{{ path('producteur_new') }}">Créer un producteur</a>
     {% endif %}
 {% endblock %}

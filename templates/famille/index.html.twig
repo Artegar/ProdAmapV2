@@ -2,14 +2,13 @@
 
 {% block body %}
 
-<h1 style="margin-top: 50px;">Famille index</h1>
+<h1 style="margin-top: 50px;">Famille(s) de produits</h1>
 <div class="container-fluid" style="margin-top: 50px;">
     <div class="row">
         <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Famille numéro</th>
                         <th>Nom</th>
                         <th>Actions</th>
                     </tr>
@@ -17,16 +16,16 @@
                 <tbody>
                     {% for famille in familles %}
                     <tr class="table-active">
-                        <td>{{ famille.famId }}</td>
                         <td>{{ famille.famNom }}</td>
                         <td>
-                            <a href="{{ path('famille_show', {'famId': famille.famId}) }}">show</a>
-                            <a href="{{ path('famille_edit', {'famId': famille.famId}) }}">edit</a>
+                            <a href="{{ path('famille_show', {'famId': famille.famId}) }}">voir</a>
+                            |
+                            <a href="{{ path('famille_edit', {'famId': famille.famId}) }}">modifier</a>
                         </td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="3">no records found</td>
+                        <td colspan="3">pas de résultats</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -35,5 +34,5 @@
     </div>
 </div>
 
-<a href="{{ path('famille_new') }}">Create new</a>
+<a href="{{ path('famille_new') }}">Créer une famille de produits</a>
 {% endblock %}

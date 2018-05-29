@@ -1,13 +1,11 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Edit Adherant{% endblock %}
+{% include 'base.html.twig' %}
 
 {% block body %}
-    <h1>Edit Adherant</h1>
+    <h1>Modifier un Adhérant</h1>
 
-    {{ include('adherant/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('adherant/_form.html.twig', {'button_label': 'Valider'}) }}
 
-    <a href="{{ path('adherant_index') }}">back to list</a>
+    <a href="{{ path('adherant_index') }}">Retourner à la liste</a>
 
     {{ include('adherant/_delete_form.html.twig') }}
 {% endblock %}

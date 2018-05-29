@@ -1,15 +1,13 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Adherant index{% endblock %}
+{% include 'base.html.twig' %}
 
 {% block body %}
-    <h1>Adherant index</h1>
+    <h1>Adhérant(s)</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>AdherId</th>
-                <th>AdherTresorier</th>
+                <th>Id</th>
+                <th>Trésorier</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -17,19 +15,20 @@
         {% for adherant in adherants %}
             <tr>
                 <td>{{ adherant.adherId }}</td>
-                <td>{{ adherant.adherTresorier ? 'Yes' : 'No' }}</td>
+                <td>{{ adherant.adherTresorier ? 'Oui' : 'Non' }}</td>
                 <td>
-                    <a href="{{ path('adherant_show', {'adherId': adherant.adherId}) }}">show</a>
-                    <a href="{{ path('adherant_edit', {'adherId': adherant.adherId}) }}">edit</a>
+                    <a href="{{ path('adherant_show', {'adherId': adherant.adherId}) }}">voir</a>
+                    |
+                    <a href="{{ path('adherant_edit', {'adherId': adherant.adherId}) }}">modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">pas de résultats</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('adherant_new') }}">Create new</a>
+    <a href="{{ path('adherant_new') }}">Créer</a>
 {% endblock %}

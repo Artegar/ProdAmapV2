@@ -36,14 +36,25 @@
 									{% if app.user %}
 									{% if is_granted('ROLE_ADMIN') %}
 									<li class="nav-item">
-										<a class="nav-link" href="/produit/">Voir les produits</a>
+										<a class="nav-link" href="/produit/">Produits</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="/famille/">Familles de produits</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="/contrat/">Contrats en cours</a>
+										<a class="nav-link" href="/contrat/">Contrats</a>
 									</li>
+
+									<li class="nav-item">
+										<a class="nav-link" href="/utilisateur/">Utilisateurs</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="/producteur/">Producteurs</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="/adherant/">Adhérants</a>
+									</li>
+
 									{% elseif is_granted('ROLE_ADHERANT') %}
 									<li class="nav-item">
 										<a class="nav-link" href="/contrat/">Mes contrats</a>
@@ -76,25 +87,18 @@
 										<a class="nav-link" href="/producteur">Nos Producteurs</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="notrehistoire">Notre histoire</a>
+										<a class="nav-link" href="/notrehistoire">Notre histoire</a>
 									</li>
+
+									<div class="col-lg-6" style="text-align: right;"> 
+										<a role="btn" class="btn btn-primary  btn-md" href="/security/formConnection">
+											connexion 
+										</a>
+									</div>
 									{% endif %}
 								</ul>
 							</div>
 						</div>	
-						{% if app.user %}
-						{% if is_granted('ROLE_ADMIN') %}
-						<a role="btn" class="btn btn-primary  btn-md" href="/utilisateur/new">
-								Creation de compte
-							</a>
-							{% endif %}	
-						{% else %}
-						<div class="col-lg-6" style="text-align: right;"> 
-							<a role="btn" class="btn btn-primary  btn-md" href="/security/formConnection">
-								Connexion
-							</a>
-						</div>
-						{% endif %}	
 					</div>		
 				</div>			
 			</div>

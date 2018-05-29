@@ -1,17 +1,10 @@
 {% include 'base.html.twig' %}
 
-
-{% block title %}Utilisateur{% endblock %}
-
 {% block body %}
     <h1>Utilisateur</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>UtilId</th>
-                <td>{{ utilisateur.utilId }}</td>
-            </tr>
             <tr>
                 <th>UtilNom</th>
                 <td>{{ utilisateur.utilNom }}</td>
@@ -38,11 +31,11 @@
             </tr>
             <tr>
                 <th>UtilActif</th>
-                <td>{{ utilisateur.utilActif ? 'Yes' : 'No' }}</td>
+                <td>{{ utilisateur.utilActif ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>UtilSuperadmin</th>
-                <td>{{ utilisateur.utilSuperadmin ? 'Yes' : 'No' }}</td>
+                <td>{{ utilisateur.utilSuperadmin ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
                 <th>UtilAdresse1</th>
@@ -71,9 +64,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('utilisateur_index') }}">back to list</a>
+    <a href="{{ path('utilisateur_index') }}">retourner à la liste</a>
 
-    <a href="{{ path('utilisateur_edit', {'utilId': utilisateur.utilId}) }}">edit</a>
+    <a href="{{ path('utilisateur_edit', {'utilId': utilisateur.utilId}) }}">modifier</a>
 
     {{ include('utilisateur/_delete_form.html.twig') }}
 {% endblock %}

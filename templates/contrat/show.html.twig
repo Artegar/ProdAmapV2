@@ -7,31 +7,29 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>ContId</th>
-                <td>{{ contrat.contId }}</td>
+                <th>Création</th>
+                <td>{{ contrat.contDateRecept ? contrat.contDateRecept|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>ContDateRecept</th>
-                <td>{{ contrat.contDateRecept ? contrat.contDateRecept|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ContMontant</th>
+                <th>Prix du panier</th>
                 <td>{{ contrat.contMontant }}</td>
             </tr>
             <tr>
-                <th>ContDateDebut</th>
-                <td>{{ contrat.contDateDebut ? contrat.contDateDebut|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Début</th>
+                <td>{{ contrat.contDateDebut ? contrat.contDateDebut|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>ContDateFin</th>
-                <td>{{ contrat.contDateFin ? contrat.contDateFin|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Fin</th>
+                <td>{{ contrat.contDateFin ? contrat.contDateFin|date('d-m-Y') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('contrat_index') }}">back to list</a>
+    <a href="{{ path('contrat_index') }}">Retourner a la liste</a>
 
-    <a href="{{ path('contrat_edit', {'contId': contrat.contId}) }}">edit</a>
+    </br>
+
+    <a href="{{ path('contrat_edit', {'contId': contrat.contId}) }}">modifier</a>
 
     {{ include('contrat/_delete_form.html.twig') }}
 {% endblock %}

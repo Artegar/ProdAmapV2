@@ -1,42 +1,41 @@
 {% include 'base.html.twig' %}
 
 {% block body %}
-<h1 style="margin-top: 50px;">Contrat</h1>
+<h1 style="margin-top: 50px;">Contrat(s)</h1>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
             <table class="table">
                 <thead>
                     <tr>
-                        <th>ContId</th>
-                        <th>ContDateRecept</th>
-                        <th>ContMontant</th>
-                        <th>ContDateDebut</th>
-                        <th>ContDateFin</th>
+                        <th>Création</th>
+                        <th>Prix du panier</th>
+                        <th>Début</th>
+                        <th>Fin</th>
                         <th>actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for contrat in contrats %}
                     <tr class="table-active">
-                        <td>{{ contrat.contId }}</td>
-                        <td>{{ contrat.contDateRecept ? contrat.contDateRecept|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ contrat.contDateRecept ? contrat.contDateRecept|date('m-d-Y') : '' }}</td>
                         <td>{{ contrat.contMontant }}</td>
-                        <td>{{ contrat.contDateDebut ? contrat.contDateDebut|date('Y-m-d H:i:s') : '' }}</td>
-                        <td>{{ contrat.contDateFin ? contrat.contDateFin|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ contrat.contDateDebut ? contrat.contDateDebut|date('m-d-Y') : '' }}</td>
+                        <td>{{ contrat.contDateFin ? contrat.contDateFin|date('m-d-Y') : '' }}</td>
                         <td>
-                            <a href="{{ path('contrat_show', {'contId': contrat.contId}) }}">show</a>
-
+                            <a href="{{ path('contrat_show', {'contId': contrat.contId}) }}">voir</a>
+                            
                             {% if app.user %}
                             {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('contrat_edit', {'contId': contrat.contId}) }}">edit</a>
+                            |
+                            <a href="{{ path('contrat_edit', {'contId': contrat.contId}) }}">modifier</a>
                             {% endif %}
                             {% endif %}
                         </td>
                     </tr>
                     {% else %}
                     <tr>
-                        <td colspan="6">no records found</td>
+                        <td colspan="6">pas de résultats</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -46,7 +45,7 @@
 </div>
 {% if app.user %}
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('contrat_new') }}">Create new</a>
+        <a href="{{ path('contrat_new') }}">Creer un contrat</a>
     {% endif %}
 {% endif %}
 {% endblock %}

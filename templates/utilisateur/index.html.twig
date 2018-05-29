@@ -1,28 +1,26 @@
 {% include 'base.html.twig' %}
 
-{% block title %}Utilisateur index{% endblock %}
-
 {% block body %}
-    <h1>Utilisateur index</h1>
+    <h1>Utilisateur(s)</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>UtilId</th>
-                <th>UtilNom</th>
-                <th>UtilPrenom</th>
-                <th>UtilTel</th>
-                <th>UtilMail</th>
-                <th>UtilLogin</th>
-                <th>UtilMdp</th>
-                <th>UtilActif</th>
-                <th>UtilSuperadmin</th>
-                <th>UtilAdresse1</th>
-                <th>UtilAdresse2</th>
-                <th>UtilCodepostal</th>
-                <th>UtilVille</th>
-                <th>Producteur</th>
-                <th>Adherant</th>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>téléphone</th>
+                <th>email</th>
+                <th>Login</th>
+                <th>Mdp</th>
+                <th>Actif</th>
+                <th>Admin</th>
+                <th>Adresse</th>
+                <th>Complement d'adresse</th>
+                <th>Code postal</th>
+                <th>Ville</th>
+                <th>Id Producteur</th>
+                <th>Id Adherant</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -36,8 +34,8 @@
                 <td>{{ utilisateur.utilMail }}</td>
                 <td>{{ utilisateur.utilLogin }}</td>
                 <td>{{ utilisateur.utilMdp }}</td>
-                <td>{{ utilisateur.utilActif ? 'Yes' : 'No' }}</td>
-                <td>{{ utilisateur.utilSuperadmin ? 'Yes' : 'No' }}</td>
+                <td>{{ utilisateur.utilActif ? 'Oui' : 'Non' }}</td>
+                <td>{{ utilisateur.utilSuperadmin ? 'Oui' : 'Non' }}</td>
                 <td>{{ utilisateur.utilAdresse1 }}</td>
                 <td>{{ utilisateur.utilAdresse2 }}</td>
                 <td>{{ utilisateur.utilCodepostal }}</td>
@@ -51,7 +49,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="16">no records found</td>
+                <td colspan="16">pas de résultats</td>
             </tr>
         {% endfor %}
         </tbody>

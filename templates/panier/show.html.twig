@@ -1,47 +1,42 @@
 {% include 'base.html.twig' %}
 
-
-{% block title %}Panier{% endblock %}
-
 {% block body %}
     <h1>Panier</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>PanierId</th>
-                <td>{{ panier.panierId }}</td>
+                <th>Date prévue</th>
+                <td>{{ panier.panierDatePrevue ? panier.panierDatePrevue|date('H:i:s m-d-Y') : '' }}</td>
             </tr>
             <tr>
-                <th>PanierDatePrevue</th>
-                <td>{{ panier.panierDatePrevue ? panier.panierDatePrevue|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Livraison</th>
+                <td>{{ panier.panierRecept ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>PanierRecept</th>
-                <td>{{ panier.panierRecept ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>PanierDateRecept</th>
-                <td>{{ panier.panierDateRecept ? panier.panierDateRecept|date('Y-m-d H:i:s') : '' }}</td>
+                <th>Date de réception</th>
+                <td>{{ panier.panierDateRecept ? panier.panierDateRecept|date('H:i:s m-d-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>PanierActif</th>
-                <td>{{ panier.panierActif ? 'Yes' : 'No' }}</td>
+                <td>{{ panier.panierActif ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>UtilPanierProbleme</th>
-                <td>{{ panier.utilPanierProbleme ? 'Yes' : 'No' }}</td>
+                <th>Problème de livraison</th>
+                <td>{{ panier.utilPanierProbleme ? 'Oui' : 'Non' }}</td>
             </tr>
             <tr>
-                <th>UtilPanierRaison</th>
+                <th>Justification</th>
                 <td>{{ panier.utilPanierRaison }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('panier_index') }}">back to list</a>
+    <a href="{{ path('panier_index') }}">retourner a la liste</a>
 
-    <a href="{{ path('panier_edit', {'panierId': panier.panierId}) }}">edit</a>
+    </br>
+    
+    <a href="{{ path('panier_edit', {'panierId': panier.panierId}) }}">modifier</a>
 
     {{ include('panier/_delete_form.html.twig') }}
 {% endblock %}
