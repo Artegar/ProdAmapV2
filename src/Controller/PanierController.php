@@ -111,6 +111,27 @@ class PanierController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            if($panier->getPanierRecept())
+            {
+                $datePrevu = $panier->getPanierDatePrevue();
+                date_modify($datePrevu, '+1 month');
+                
+                $nouveauPanier = new Panier();
+                $nouveauPanier->setPanierDatePrevue($datePrevu);
+                $nouveauPanier->setPanierRecept(false);
+                //$nouveauPanier->setPanierDateRecept();
+                $nouveauPanier->setPanierActif(true);
+                //$nouveauPanier->setUtilPanierProbleme();
+                //$nouveauPanier->setUtilPanierRaison();
+                $nouveauPanier->setAdher($panier->getAdher());
+                $nouveauPanier->setCont($panier->getCont());
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($nouveauPanier);
+                $em->flush();
+
+            }
+
             return $this->redirectToRoute('panier_edit', ['panierId' => $panier->getPanierId()]);
         }
 

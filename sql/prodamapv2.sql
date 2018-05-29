@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  Dim 27 mai 2018 à 17:12
+-- Généré le :  mar. 29 mai 2018 à 20:54
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.2.4
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `amap` (
 --
 
 INSERT INTO `amap` (`amap_id`, `amap_nom`, `amap_adresse1`, `amap_adresse2`, `amap_codepostal`, `amap_ville`) VALUES
-(1, 'amap du 45', 'rue de la rue', 'baiment gg', '45000', 'Orléans');
+(1, 'amap du 45', 'rue des arts', '', '45000', 'Orléans');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS `contrat` (
 --
 
 INSERT INTO `contrat` (`cont_id`, `cont_date_recept`, `cont_montant`, `cont_date_debut`, `cont_date_fin`, `prod_id`, `amap_id`, `adher_id`) VALUES
-(2, '2018-05-15 00:00:00', 150, '2017-10-16 00:00:00', '2019-04-19 00:00:00', 1, 1, 1);
+(2, '2017-10-16 10:20:00', 150, '2017-10-16 14:00:00', '2018-10-16 14:00:00', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -172,8 +172,8 @@ CREATE TABLE IF NOT EXISTS `producteur` (
 --
 
 INSERT INTO `producteur` (`prod_id`, `prod_verif`, `prod_siren`, `prod_date_verif`, `prod_nom_exploit`, `produit_id`) VALUES
-(1, 1, '123456', '2017-05-08 00:00:00', '123456', 1),
-(2, 1, '123456', '2017-05-07 00:00:00', '123456', 2);
+(1, 1, '829 967 066', '2017-05-08 00:00:00', 'La ferme urbaine 9TER', 1),
+(2, 1, '820 623 072', '2017-05-07 00:00:00', 'Bergerie de la Petite Ferme', 2);
 
 -- --------------------------------------------------------
 
@@ -198,8 +198,7 @@ CREATE TABLE IF NOT EXISTS `produit` (
 
 INSERT INTO `produit` (`produit_id`, `prod_nom`, `fam_id`, `util_id`) VALUES
 (1, 'raisin', 4, 1),
-(2, 'courgette', 3, 1),
-(3, 'zee', 3, 2);
+(2, 'courgette', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -225,7 +224,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
   `producteur` int(11) DEFAULT NULL,
   `adherant` int(11) DEFAULT NULL,
   PRIMARY KEY (`util_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `utilisateur`
@@ -235,7 +234,8 @@ INSERT INTO `utilisateur` (`util_id`, `util_nom`, `util_prenom`, `util_tel`, `ut
 (1, 'administrateur', 'administrateur', '0606060606', 'mail@gmail.com', 'administrateur', 'mdp', 1, 1, '1 rue de la rue', 'batiment a', '45000', 'Orléans', NULL, NULL),
 (2, 'producteur', 'producteur', '0606060606', 'mail@gmail.com', 'producteur', 'mdp', 1, 0, '1 rue de la rue', 'batiment a', '45000', 'Orléans', 1, NULL),
 (3, 'adherant', 'adherant', '0606060606', 'mail@gmail.com', 'adherant', 'mdp', 1, 0, '1 rue de la rue', 'batiment a', '45000', 'Orléans2', NULL, 1),
-(4, 'producteur2', 'producteur2', '0606060606', 'mail@gmail.com', 'producteur2', 'mdp', 1, 0, '1 rue de la rue', 'batiment a', '45000', 'Orléans', 2, NULL);
+(4, 'producteur2', 'producteur2', '0606060606', 'mail@gmail.com', 'producteur2', 'mdp', 1, 0, '1 rue de la rue', 'batiment a', '45000', 'Orléans', 2, NULL),
+(5, 'test', 'test', 'test', 'test', 'test', 'test', 1, 0, 'test', 'test', 'test', 'test', NULL, NULL);
 
 --
 -- Contraintes pour les tables déchargées
