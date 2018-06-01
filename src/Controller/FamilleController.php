@@ -31,12 +31,17 @@ class FamilleController extends Controller
      */
     public function new(Request $request): Response
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $famille = new Famille();
         $form = $this->createForm(FamilleType::class, $famille);
+        $form->remove('util'); 
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $famille->setUtil($user);
             $em->persist($famille);
             $em->flush();
 
@@ -62,11 +67,16 @@ class FamilleController extends Controller
      */
     public function edit(Request $request, Famille $famille): Response
     {
+         $user = $this->get('security.token_storage')->getToken()->getUser();
+         
         $form = $this->createForm(FamilleType::class, $famille);
+        $form->remove('util'); 
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $famille->setUtil($user);
 
             return $this->redirectToRoute('famille_edit', ['famId' => $famille->getFamId()]);
         }

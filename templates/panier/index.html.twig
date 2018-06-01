@@ -54,6 +54,10 @@
     </div>
 </div>
 
-<a href="{{ path('panier_new') }}">Nouveau panier</a>
+{% if app.user %}
+    {% if is_granted('ROLE_ADMINISTRATEUR') %}
+        <a href="{{ path('panier_new') }}">Nouveau panier</a>
+    {% endif %}
+{% endif %}
 
 {% endblock %}

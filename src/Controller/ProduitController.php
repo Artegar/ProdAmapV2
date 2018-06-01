@@ -49,6 +49,8 @@ class ProduitController extends Controller
      */
     public function new(Request $request): Response
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $produit = new Produit();
         $form = $this->createForm(ProduitType::class, $produit);
         $form->remove('util'); 
@@ -57,7 +59,7 @@ class ProduitController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
                 //app.user
-            $produit->setUtil();
+            $produit->setUtil($user);
             $em->persist($produit);
             $em->flush();
 
@@ -98,12 +100,15 @@ class ProduitController extends Controller
      */
     public function edit(Request $request, Produit $produit): Response
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
         $form = $this->createForm(ProduitType::class, $produit);
+        $form->remove('util'); 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $produit->setUtil($user);
             return $this->redirectToRoute('produit_edit', ['produitId' => $produit->getProduitId()]);
         }
 
